@@ -1,39 +1,113 @@
 {
   "kind": "build_request",
-  "title": "Add Subjects List Section",
+  "title": "Add user-created pages and posts management",
   "projectName": "10th Science Academy",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-4",
-      "text": "Add a 'Subjects' section to the website that displays a list of subjects taught at the 10th Science Academy. Each subject should be displayed as a card or list item with the subject name clearly visible. The section should use the academy's red (#d9002c) accent color and match the existing visual theme (light gray background, centered layout, consistent typography).",
-      "target": "frontend",
+      "id": "REQ-1",
+      "text": "Implement a backend data model and API for custom pages: each page has a unique ID, title, content (rich text or markdown), author, and creation/update timestamps. Expose create, read, update, and delete (CRUD) operations as query/update calls in the Motoko actor.",
+      "target": "backend",
       "source": {
         "messageIds": [
-          "msg-3"
+          "msg-10"
         ],
         "quotes": [
-          "Subject list"
+          "I want add my own pages and post"
         ]
       },
       "acceptanceCriteria": [
-        "A 'Subjects' section is visible on the page below the existing welcome/hero section.",
-        "The section displays a list of common 10th-grade science subjects (e.g., Physics, Chemistry, Biology, Mathematics, English, Social Studies).",
-        "Each subject is presented as a styled card or list item.",
-        "The section heading and interactive elements use the academy red (#d9002c) consistent with the existing theme.",
-        "The layout is centered and responsive, matching the overall page style."
+        "A page can be created with a title and content body",
+        "All pages can be listed and individual pages retrieved by ID",
+        "A page can be updated and deleted by its author",
+        "Page records persist across canister upgrades"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement a backend data model and API for posts: each post has a unique ID, title, body content, author, and creation/update timestamps. Expose CRUD operations for posts as query/update calls in the Motoko actor.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-10"
+        ],
+        "quotes": [
+          "I want add my own pages and post"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A post can be created with a title and body",
+        "All posts can be listed and individual posts retrieved by ID",
+        "A post can be updated and deleted by its author",
+        "Post records persist across canister upgrades"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Add a 'Pages' section to the frontend where authenticated users can create a new custom page (title + content editor), view a list of all pages, edit their own pages, and delete their own pages. Display pages in a card grid consistent with the existing site theme (red accent #d9002c, Merriweather/Inter fonts).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-10"
+        ],
+        "quotes": [
+          "I want add my own pages and post"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A 'Pages' navigation link appears in the site header",
+        "Clicking 'New Page' opens a form with title and content fields",
+        "Submitted pages appear in the pages list immediately",
+        "Edit and Delete controls appear on pages owned by the logged-in user",
+        "Unauthenticated users can view pages but cannot create, edit, or delete"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Add a 'Posts' section to the frontend where authenticated users can create a new post (title + body editor), view a list of all posts in reverse-chronological order, edit their own posts, and delete their own posts. Style consistently with the existing academy theme.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-10"
+        ],
+        "quotes": [
+          "I want add my own pages and post"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A 'Posts' navigation link appears in the site header",
+        "Clicking 'New Post' opens a form with title and body fields",
+        "Submitted posts appear at the top of the posts list",
+        "Edit and Delete controls appear on posts owned by the logged-in user",
+        "Unauthenticated users can view posts but cannot create, edit, or delete"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Wire the frontend Pages and Posts sections to the backend using the existing useActor hook and React Query for data fetching, mutation, and cache invalidation.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-10"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Creating, updating, or deleting a page/post triggers a React Query cache invalidation and re-fetches the list",
+        "Loading and error states are shown while async operations are in progress",
+        "No page refresh is required to see newly created or updated content"
       ]
     }
   ],
   "constraints": [
-    "Do not alter the existing header, welcome section, or visual theme implementations.",
-    "All styling must remain consistent with the academy's red (#d9002c) accent color and existing Tailwind/CSS design tokens.",
-    "No backend changes are required for this static content."
+    "Do not modify files under frontend/src/hooks/ or frontend/src/components/ui",
+    "Preserve the existing red-accented visual theme (#d9002c) and typography (Merriweather, Inter)",
+    "All backend logic must remain in a single Motoko actor (backend/main.mo)"
   ],
   "nonGoals": [
-    "Settings or configuration section — deferred to a later request.",
-    "Dynamic subject data stored in or fetched from the backend.",
-    "User authentication or personalization features."
+    "Rich text WYSIWYG editor (plain textarea is sufficient)",
+    "Public user profiles or follower/following social features",
+    "Comments or reactions on pages/posts",
+    "Image or file uploads within pages or posts"
   ],
   "imageRequirements": {
     "required": [],

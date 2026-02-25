@@ -1,23 +1,122 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add Subjects List Section",
+  "title": "Add user-created pages and posts management (frontend)",
   "requirements": [
     {
-      "id": "REQ-4",
-      "summary": "Add a 'Subjects' section displaying a list of 10th-grade science subjects as styled cards below the existing hero section, using the academy's red accent color and matching the current visual theme",
+      "id": "REQ-3",
+      "summary": "Add Pages section with create, list, edit, and delete capabilities for authenticated users",
       "acceptanceCriteria": [
-        "A 'Subjects' section is visible on the page below the existing welcome/hero section.",
-        "The section displays a list of common 10th-grade science subjects (e.g., Physics, Chemistry, Biology, Mathematics, English, Social Studies).",
-        "Each subject is presented as a styled card or list item.",
-        "The section heading and interactive elements use the academy red (#d9002c) consistent with the existing theme.",
-        "The layout is centered and responsive, matching the overall page style."
+        "A 'Pages' navigation link appears in the site header",
+        "Clicking 'New Page' opens a form with title and content fields",
+        "Submitted pages appear in the pages list immediately",
+        "Edit and Delete controls appear on pages owned by the logged-in user",
+        "Unauthenticated users can view pages but cannot create, edit, or delete"
       ],
       "file_operations": [
         {
+          "path": "frontend/src/hooks/usePages.ts",
+          "operation": "create",
+          "description": "Create a custom hook using React Query to fetch all pages (getAllPages), create a page (createPage), update a page (updatePage), and delete a page (deletePage). Use the useActor hook to access the backend actor. Include proper loading and error states, and invalidate the pages query cache after mutations. Verify the authorization component's usage instructions before implementing to ensure proper authentication checks."
+        },
+        {
+          "path": "frontend/src/components/PagesList.tsx",
+          "operation": "create",
+          "description": "Create a component that displays all pages in a card grid consistent with the existing academy theme (red accent #d9002c, Merriweather/Inter fonts). Show page title, author name (from UserProfile), creation date, and content preview. For pages authored by the current user, display Edit and Delete buttons. Use the usePages hook for data fetching and the useInternetIdentity hook to compare the current user's principal with each page's author principal."
+        },
+        {
+          "path": "frontend/src/components/PageForm.tsx",
+          "operation": "create",
+          "description": "Create a form component for creating and editing pages with title and content textarea fields. Accept optional pageId, initialTitle, and initialContent props for edit mode. Use the usePages hook's createPage or updatePage mutations. Display loading states during submission and show success/error messages. Style consistently with the academy theme using Tailwind and the red accent color."
+        },
+        {
+          "path": "frontend/src/pages/PagesPage.tsx",
+          "operation": "create",
+          "description": "Create a page component that renders the PagesList component and includes a 'New Page' button. When clicked, show the PageForm component (either inline or in a modal/sheet). Use the authorization component to ensure only authenticated users can see the 'New Page' button. Show a login prompt for unauthenticated users who try to create a page."
+        },
+        {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Add a Subjects section below the existing hero/welcome section. Insert a new section with a heading styled using the academy red (#d9002c) and a grid of subject cards. Each card displays a subject name (Physics, Chemistry, Biology, Mathematics, English, Social Studies) with consistent styling matching the existing features grid layout. Use Tailwind classes to maintain centered layout, light gray background, and responsive grid (grid-cols-1 md:grid-cols-2 lg:grid-cols-3). Ensure the section integrates seamlessly between the hero and stats sections without altering existing components."
+          "description": "Add a 'Pages' navigation link in the header navigation menu. Import and wire the PagesPage component into the router (if using React Router) or render it conditionally based on navigation state. Ensure the link is visible to all users (authenticated and unauthenticated) but that creation/editing capabilities are guarded by authentication in the PagesPage component itself."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Add Posts section with create, list, edit, and delete capabilities for authenticated users",
+      "acceptanceCriteria": [
+        "A 'Posts' navigation link appears in the site header",
+        "Clicking 'New Post' opens a form with title and body fields",
+        "Submitted posts appear at the top of the posts list",
+        "Edit and Delete controls appear on posts owned by the logged-in user",
+        "Unauthenticated users can view posts but cannot create, edit, or delete"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/usePosts.ts",
+          "operation": "create",
+          "description": "Create a custom hook using React Query to fetch all posts (getAllPosts), create a post (createPost), update a post (updatePost), and delete a post (deletePost). Use the useActor hook to access the backend actor. Include proper loading and error states, and invalidate the posts query cache after mutations. Verify the authorization component's usage instructions before implementing to ensure proper authentication checks."
+        },
+        {
+          "path": "frontend/src/components/PostsList.tsx",
+          "operation": "create",
+          "description": "Create a component that displays all posts in reverse-chronological order (newest first) in a card grid or list layout consistent with the academy theme (red accent #d9002c, Merriweather/Inter fonts). Show post title, author name (from UserProfile), creation date, and body preview. For posts authored by the current user, display Edit and Delete buttons. Use the usePosts hook for data fetching and the useInternetIdentity hook to compare the current user's principal with each post's author principal."
+        },
+        {
+          "path": "frontend/src/components/PostForm.tsx",
+          "operation": "create",
+          "description": "Create a form component for creating and editing posts with title and body textarea fields. Accept optional postId, initialTitle, and initialBody props for edit mode. Use the usePosts hook's createPost or updatePost mutations. Display loading states during submission and show success/error messages. Style consistently with the academy theme using Tailwind and the red accent color."
+        },
+        {
+          "path": "frontend/src/pages/PostsPage.tsx",
+          "operation": "create",
+          "description": "Create a page component that renders the PostsList component and includes a 'New Post' button. When clicked, show the PostForm component (either inline or in a modal/sheet). Use the authorization component to ensure only authenticated users can see the 'New Post' button. Show a login prompt for unauthenticated users who try to create a post."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add a 'Posts' navigation link in the header navigation menu (alongside the 'Pages' link added in REQ-3). Import and wire the PostsPage component into the router or render it conditionally based on navigation state. Ensure the link is visible to all users (authenticated and unauthenticated) but that creation/editing capabilities are guarded by authentication in the PostsPage component itself."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Wire Pages and Posts sections to the backend using useActor and React Query for data fetching, mutations, and cache invalidation",
+      "acceptanceCriteria": [
+        "Creating, updating, or deleting a page/post triggers a React Query cache invalidation and re-fetches the list",
+        "Loading and error states are shown while async operations are in progress",
+        "No page refresh is required to see newly created or updated content"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/usePages.ts",
+          "operation": "modify",
+          "description": "Ensure that all mutation operations (createPage, updatePage, deletePage) include onSuccess callbacks that call queryClient.invalidateQueries(['pages']) to trigger a re-fetch of the pages list. Handle loading states by exposing isLoading from the query and isPending from mutations. Handle errors by returning error objects from the query and mutations."
+        },
+        {
+          "path": "frontend/src/hooks/usePosts.ts",
+          "operation": "modify",
+          "description": "Ensure that all mutation operations (createPost, updatePost, deletePost) include onSuccess callbacks that call queryClient.invalidateQueries(['posts']) to trigger a re-fetch of the posts list. Handle loading states by exposing isLoading from the query and isPending from mutations. Handle errors by returning error objects from the query and mutations."
+        },
+        {
+          "path": "frontend/src/components/PagesList.tsx",
+          "operation": "modify",
+          "description": "Display a loading spinner or skeleton when the pages query is loading. Show an error message if the query fails. After a delete operation completes, show a success message and ensure the UI updates immediately without requiring a page refresh."
+        },
+        {
+          "path": "frontend/src/components/PostsList.tsx",
+          "operation": "modify",
+          "description": "Display a loading spinner or skeleton when the posts query is loading. Show an error message if the query fails. After a delete operation completes, show a success message and ensure the UI updates immediately without requiring a page refresh."
+        },
+        {
+          "path": "frontend/src/components/PageForm.tsx",
+          "operation": "modify",
+          "description": "Disable the submit button and show a loading indicator while the create or update mutation is pending. Display error messages returned from the backend (e.g., authorization failures) in a user-friendly format. After successful submission, clear the form and show a success message."
+        },
+        {
+          "path": "frontend/src/components/PostForm.tsx",
+          "operation": "modify",
+          "description": "Disable the submit button and show a loading indicator while the create or update mutation is pending. Display error messages returned from the backend (e.g., authorization failures) in a user-friendly format. After successful submission, clear the form and show a success message."
         }
       ]
     }

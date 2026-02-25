@@ -8,10 +8,104 @@
 
 import { IDL } from '@icp-sdk/core/candid';
 
-export const idlService = IDL.Service({});
+export const UserRole = IDL.Variant({
+  'admin' : IDL.Null,
+  'user' : IDL.Null,
+  'guest' : IDL.Null,
+});
+export const Time = IDL.Int;
+export const Page = IDL.Record({
+  'id' : IDL.Nat,
+  'title' : IDL.Text,
+  'content' : IDL.Text,
+  'createdAt' : Time,
+  'author' : IDL.Principal,
+  'updatedAt' : Time,
+});
+export const Post = IDL.Record({
+  'id' : IDL.Nat,
+  'title' : IDL.Text,
+  'body' : IDL.Text,
+  'createdAt' : Time,
+  'author' : IDL.Principal,
+  'updatedAt' : Time,
+});
+export const UserProfile = IDL.Record({ 'name' : IDL.Text });
+
+export const idlService = IDL.Service({
+  '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
+  'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+  'createPage' : IDL.Func([IDL.Text, IDL.Text], [IDL.Nat], []),
+  'createPost' : IDL.Func([IDL.Text, IDL.Text], [IDL.Nat], []),
+  'deletePage' : IDL.Func([IDL.Nat], [], []),
+  'deletePost' : IDL.Func([IDL.Nat], [], []),
+  'getAllPages' : IDL.Func([], [IDL.Vec(Page)], ['query']),
+  'getAllPosts' : IDL.Func([], [IDL.Vec(Post)], ['query']),
+  'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
+  'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
+  'getPage' : IDL.Func([IDL.Nat], [IDL.Opt(Page)], ['query']),
+  'getPost' : IDL.Func([IDL.Nat], [IDL.Opt(Post)], ['query']),
+  'getUserProfile' : IDL.Func(
+      [IDL.Principal],
+      [IDL.Opt(UserProfile)],
+      ['query'],
+    ),
+  'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
+  'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
+  'updatePage' : IDL.Func([IDL.Nat, IDL.Text, IDL.Text], [], []),
+  'updatePost' : IDL.Func([IDL.Nat, IDL.Text, IDL.Text], [], []),
+});
 
 export const idlInitArgs = [];
 
-export const idlFactory = ({ IDL }) => { return IDL.Service({}); };
+export const idlFactory = ({ IDL }) => {
+  const UserRole = IDL.Variant({
+    'admin' : IDL.Null,
+    'user' : IDL.Null,
+    'guest' : IDL.Null,
+  });
+  const Time = IDL.Int;
+  const Page = IDL.Record({
+    'id' : IDL.Nat,
+    'title' : IDL.Text,
+    'content' : IDL.Text,
+    'createdAt' : Time,
+    'author' : IDL.Principal,
+    'updatedAt' : Time,
+  });
+  const Post = IDL.Record({
+    'id' : IDL.Nat,
+    'title' : IDL.Text,
+    'body' : IDL.Text,
+    'createdAt' : Time,
+    'author' : IDL.Principal,
+    'updatedAt' : Time,
+  });
+  const UserProfile = IDL.Record({ 'name' : IDL.Text });
+  
+  return IDL.Service({
+    '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
+    'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+    'createPage' : IDL.Func([IDL.Text, IDL.Text], [IDL.Nat], []),
+    'createPost' : IDL.Func([IDL.Text, IDL.Text], [IDL.Nat], []),
+    'deletePage' : IDL.Func([IDL.Nat], [], []),
+    'deletePost' : IDL.Func([IDL.Nat], [], []),
+    'getAllPages' : IDL.Func([], [IDL.Vec(Page)], ['query']),
+    'getAllPosts' : IDL.Func([], [IDL.Vec(Post)], ['query']),
+    'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
+    'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
+    'getPage' : IDL.Func([IDL.Nat], [IDL.Opt(Page)], ['query']),
+    'getPost' : IDL.Func([IDL.Nat], [IDL.Opt(Post)], ['query']),
+    'getUserProfile' : IDL.Func(
+        [IDL.Principal],
+        [IDL.Opt(UserProfile)],
+        ['query'],
+      ),
+    'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
+    'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
+    'updatePage' : IDL.Func([IDL.Nat, IDL.Text, IDL.Text], [], []),
+    'updatePost' : IDL.Func([IDL.Nat, IDL.Text, IDL.Text], [], []),
+  });
+};
 
 export const init = ({ IDL }) => { return []; };

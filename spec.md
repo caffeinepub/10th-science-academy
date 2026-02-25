@@ -1,11 +1,15 @@
 # Specification
 
 ## Summary
-**Goal:** Add a "Subjects" section to the 10th Science Academy website that lists the subjects taught.
+**Goal:** Add user-created Pages and Posts management to the 10th Science Academy site, allowing authenticated users to create, view, edit, and delete their own pages and posts.
 
 **Planned changes:**
-- Add a "Subjects" section below the existing hero/welcome section
-- Display subjects (Physics, Chemistry, Biology, Mathematics, English, Social Studies) as styled cards or list items
-- Style the section with the academy's red (#d9002c) accent color, light gray background, centered layout, and consistent typography
+- Add backend data models and CRUD API for custom pages (title, content, author, timestamps) in the Motoko actor
+- Add backend data models and CRUD API for posts (title, body, author, timestamps) in the Motoko actor, with data persistence across upgrades
+- Add a "Pages" section to the frontend with a list view (card grid), create form, and edit/delete controls for page owners
+- Add a "Posts" section to the frontend with a reverse-chronological list, create form, and edit/delete controls for post owners
+- Add "Pages" and "Posts" navigation links to the site header
+- Wire both sections to the backend using the existing useActor hook and React Query for fetching, mutations, and cache invalidation
+- Show loading and error states during async operations; unauthenticated users can view but not create, edit, or delete
 
-**User-visible outcome:** Visitors can see a clearly displayed list of subjects offered at the academy, presented in a styled, responsive section that matches the existing page design.
+**User-visible outcome:** Users can navigate to dedicated Pages and Posts sections, browse all content, and—when logged in—create, edit, and delete their own pages and posts without a page refresh, all styled consistently with the existing red-accented academy theme.

@@ -1,42 +1,32 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 5,
-  "summary": "A simple static website for '10th Science Academy' with a red-themed header, welcome section, and a button that shows an alert to students.",
-  "architectural_notes": [
-    "Static HTML/CSS website with inline styles and no external dependencies"
-  ],
+  "projectStateVersion": 3,
+  "summary": "A web application where users can add their own pages and posts.",
+  "architectural_notes": [],
   "known_issues": [],
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-create-a-header-section-displaying-the-title-10th-science-academy-with-a-bold-red-background-d9002c-and-white-text",
-      "title": "Create a header section displaying the title '10th Science Academy' with a bold red background (#d9002c) and white text.",
-      "reqIds": [
-        "REQ-1"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-create-a-welcome-section-with-the-heading-welcome-to-my-website-a-subtitle-paragraph-this-website-is-created-using-html-and-a-button-labeled-click-me-that-triggers-an-alert-saying-hello-students-when-clicked",
-      "title": "Create a welcome section with the heading 'Welcome to My Website', a subtitle paragraph 'This website is created using HTML.', and a button labeled 'Click Me' that triggers an alert saying 'Hello Students!' when clicked.",
-      "reqIds": [
-        "REQ-2"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-apply-a-cohesive-visual-theme-using-the-academy-s-red-d9002c-as-the-primary-accent-color-use-a-clean-academic-style-with-a-light-gray-background-centered-layout-clear-typography-and-consistent-use-of-red-for-interactive-elements-like-buttons-and-headings",
-      "title": "Apply a cohesive visual theme using the academy's red (#d9002c) as the primary accent color. Use a clean, academic style with a light gray background, centered layout, clear typography, and consistent use of red for interactive elements like buttons and headings.",
+      "id": "feature-add-a-pages-section-to-the-frontend-where-authenticated-users-can-create-a-new-custom-page-title-content-editor-view-a-list-of-all-pages-edit-their-own-pages-and-delete-their-own-pages-display-pages-in-a-card-grid-consistent-with-the-existing-site-theme-red-accent-d9002c-merriweather-inter-fonts",
+      "title": "Add a 'Pages' section to the frontend where authenticated users can create a new custom page (title + content editor), view a list of all pages, edit their own pages, and delete their own pages. Display pages in a card grid consistent with the existing site theme (red accent #d9002c, Merriweather/Inter fonts).",
       "reqIds": [
         "REQ-3"
       ],
       "version": 1
     },
     {
-      "id": "feature-add-a-subjects-section-to-the-website-that-displays-a-list-of-subjects-taught-at-the-10th-science-academy-each-subject-should-be-displayed-as-a-card-or-list-item-with-the-subject-name-clearly-visible-the-section-should-use-the-academy-s-red-d9002c-accent-color-and-match-the-existing-visual-theme-light-gray-background-centered-layout-consistent-typography",
-      "title": "Add a 'Subjects' section to the website that displays a list of subjects taught at the 10th Science Academy. Each subject should be displayed as a card or list item with the subject name clearly visible. The section should use the academy's red (#d9002c) accent color and match the existing visual theme (light gray background, centered layout, consistent typography).",
+      "id": "feature-add-a-posts-section-to-the-frontend-where-authenticated-users-can-create-a-new-post-title-body-editor-view-a-list-of-all-posts-in-reverse-chronological-order-edit-their-own-posts-and-delete-their-own-posts-style-consistently-with-the-existing-academy-theme",
+      "title": "Add a 'Posts' section to the frontend where authenticated users can create a new post (title + body editor), view a list of all posts in reverse-chronological order, edit their own posts, and delete their own posts. Style consistently with the existing academy theme.",
       "reqIds": [
         "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-wire-the-frontend-pages-and-posts-sections-to-the-backend-using-the-existing-useactor-hook-and-react-query-for-data-fetching-mutation-and-cache-invalidation",
+      "title": "Wire the frontend Pages and Posts sections to the backend using the existing useActor hook and React Query for data fetching, mutation, and cache invalidation.",
+      "reqIds": [
+        "REQ-5"
       ],
       "version": 1
     }
@@ -44,14 +34,30 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Add a subjects list section to the website",
+      "summary": "Allow users to create and manage their own custom pages",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-2",
-      "summary": "Add a settings/configuration section or page (details to be specified later)",
+      "summary": "Allow users to create and manage their own posts",
       "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Implement a backend data model and API for custom pages: each page has a unique ID, title, content (rich text or markdown), author, and creation/update timestamps. Expose create, read, update, and delete (CRUD) operations as query/update calls in the Motoko actor.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Implement a backend data model and API for posts: each post has a unique ID, title, body content, author, and creation/update timestamps. Expose CRUD operations for posts as query/update calls in the Motoko actor.",
+      "reqIds": [
+        "REQ-2"
+      ],
       "status": "pending"
     }
   ],

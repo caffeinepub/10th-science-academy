@@ -1,5 +1,14 @@
 {
   "frontend/src/index.css": "Global styles with OKLCH color system using academy red (#d9002c ≈ oklch 0.45 0.22 25) as primary, warm gray background, and Google Fonts imports for Merriweather (serif) and Inter (sans-serif).",
   "frontend/tailwind.config.js": "Tailwind configuration extending the design system with custom font families (Merriweather serif, Inter sans), card shadows, and fade-in/pulse-ring animations.",
-  "frontend/src/App.tsx": "Main app component for 10th Science Academy with a red header/nav (now including a \"Subjects\" link), hero section, a new Subjects section displaying six 10th-grade subjects (Physics, Chemistry, Biology, Mathematics, English, Social Studies) as styled cards in a responsive grid, stats bar, features grid, CTA section, and branded footer."
+  "frontend/src/App.tsx": "Main app component with view-based navigation (home/pages/posts), sticky header with desktop and mobile nav including Pages and Posts links, and all existing home page sections preserved.",
+  "frontend/src/hooks/usePages.ts": "Custom React Query hooks for all page operations (getAllPages, createPage, updatePage, deletePage) using the backend actor, with cache invalidation on mutations.",
+  "frontend/src/hooks/usePosts.ts": "Custom React Query hooks for all post operations (getAllPosts, createPost, updatePost, deletePost) using the backend actor, with cache invalidation on mutations.",
+  "frontend/src/hooks/useUserProfiles.ts": "Custom React Query hooks for fetching the caller's user profile and any user's profile by Principal, with proper actor dependency handling.",
+  "frontend/src/components/PageForm.tsx": "Form component for creating and editing pages with title and content fields, loading states, error/success messages, and edit mode support via props.",
+  "frontend/src/components/PostForm.tsx": "Form component for creating and editing posts with title and body fields, loading states, error/success messages, and edit mode support via props.",
+  "frontend/src/components/PagesList.tsx": "Grid list of all pages with skeleton loading, error state, empty state, and per-card edit/delete controls (with confirmation dialog) visible only to the page's author.",
+  "frontend/src/components/PostsList.tsx": "Grid list of all posts sorted newest-first with skeleton loading, error state, empty state, and per-card edit/delete controls (with confirmation dialog) visible only to the post's author.",
+  "frontend/src/pages/PagesPage.tsx": "Pages section page with a red hero header, \"New Page\" button (auth-gated), login prompt for unauthenticated users, and the PagesList component.",
+  "frontend/src/pages/PostsPage.tsx": "Posts section page with a red hero header, \"New Post\" button (auth-gated), login prompt for unauthenticated users, and the PostsList component."
 }

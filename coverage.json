@@ -1,35 +1,116 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-25T02:36:39.458Z",
+  "generatedAt": "2026-02-25T02:50:04.945Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 1,
-    "implemented": 1,
+    "total": 5,
+    "implemented": 3,
     "items": [
       {
-        "id": "REQ-4",
-        "summary": "Add a 'Subjects' section to the website that displays a list of subjects taught at the 10th Science Academy. Each subject should be displayed as a card or list item with the subject name clearly visible. The section should use the academy's red (#d9002c) accent color and match the existing visual theme (light gray background, centered layout, consistent typography).",
+        "id": "REQ-1",
+        "summary": "Implement a backend data model and API for custom pages: each page has a unique ID, title, content (rich text or markdown), author, and creation/update timestamps. Expose create, read, update, and delete (CRUD) operations as query/update calls in the Motoko actor.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Implement a backend data model and API for posts: each post has a unique ID, title, body content, author, and creation/update timestamps. Expose CRUD operations for posts as query/update calls in the Motoko actor.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Add a 'Pages' section to the frontend where authenticated users can create a new custom page (title + content editor), view a list of all pages, edit their own pages, and delete their own pages. Display pages in a card grid consistent with the existing site theme (red accent #d9002c, Merriweather/Inter fonts).",
         "status": "implemented",
         "plannedFiles": [
+          "frontend/src/hooks/usePages.ts",
+          "frontend/src/components/PagesList.tsx",
+          "frontend/src/components/PageForm.tsx",
+          "frontend/src/pages/PagesPage.tsx",
           "frontend/src/App.tsx"
         ],
         "matchedFiles": [
+          "frontend/src/hooks/usePages.ts",
+          "frontend/src/components/PagesList.tsx",
+          "frontend/src/components/PageForm.tsx",
+          "frontend/src/pages/PagesPage.tsx",
           "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Add a 'Posts' section to the frontend where authenticated users can create a new post (title + body editor), view a list of all posts in reverse-chronological order, edit their own posts, and delete their own posts. Style consistently with the existing academy theme.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/usePosts.ts",
+          "frontend/src/components/PostsList.tsx",
+          "frontend/src/components/PostForm.tsx",
+          "frontend/src/pages/PostsPage.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/usePosts.ts",
+          "frontend/src/components/PostsList.tsx",
+          "frontend/src/components/PostForm.tsx",
+          "frontend/src/pages/PostsPage.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Wire the frontend Pages and Posts sections to the backend using the existing useActor hook and React Query for data fetching, mutation, and cache invalidation.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/usePages.ts",
+          "frontend/src/hooks/usePosts.ts",
+          "frontend/src/components/PagesList.tsx",
+          "frontend/src/components/PostsList.tsx",
+          "frontend/src/components/PageForm.tsx",
+          "frontend/src/components/PostForm.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/usePages.ts",
+          "frontend/src/hooks/usePosts.ts",
+          "frontend/src/components/PagesList.tsx",
+          "frontend/src/components/PostsList.tsx",
+          "frontend/src/components/PageForm.tsx",
+          "frontend/src/components/PostForm.tsx"
         ]
       }
     ]
   },
   "changedFiles": [
+    "backend/authorization/MixinAuthorization.mo",
+    "backend/authorization/access-control.mo",
+    "backend/main.mo",
+    "backend/migration.mo",
     "build-request.json",
-    "build-template/README.md",
+    "caffeine.lock.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
     "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/PageForm.tsx",
+    "frontend/src/components/PagesList.tsx",
+    "frontend/src/components/PostForm.tsx",
+    "frontend/src/components/PostsList.tsx",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/usePages.ts",
+    "frontend/src/hooks/usePosts.ts",
+    "frontend/src/hooks/useUserProfiles.ts",
+    "frontend/src/pages/PagesPage.tsx",
+    "frontend/src/pages/PostsPage.tsx",
+    "frontend/src/utils/urlParams.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

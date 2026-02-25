@@ -1,14 +1,59 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-25T02:36:39.456Z",
-  "summary": "The diff implements REQ-4 fully. A 'Subjects' section has been added to App.tsx with six 10th-grade science subjects (Physics, Chemistry, Biology, Mathematics, English, Social Studies), each displayed as a styled card with an icon, name, and description. The section uses the academy's red (#d9002c) accent color via the existing design token system, is centered and responsive using a grid layout, and appears below the hero/welcome section. All acceptance criteria appear to be met.",
-  "missing_requirements": [],
-  "hallucinated_features": [],
-  "confidence": 0.95,
+  "generatedAt": "2026-02-25T02:50:04.943Z",
+  "summary": "The diff implements nearly all requirements comprehensively. Backend CRUD for pages and posts is present in backend/main.mo, frontend components and pages for Pages and Posts sections are added, React Query hooks with cache invalidation are implemented, and navigation links appear in App.tsx. One minor gap exists around persistence across canister upgrades, as stable variable declarations are not visible in the truncated main.mo. A migration module and URL params utility were added without being requested.",
+  "missing_requirements": [
+    {
+      "id": "REQ-1",
+      "requirement": "Page records persist across canister upgrades",
+      "reason": "The backend/main.mo uses Map.empty<Nat, Page>() for pages storage, but there is no evidence of stable variable declarations (stable var) for pages or nextPageId in the truncated diff, making persistence across upgrades unclear.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "requirement": "Post records persist across canister upgrades",
+      "reason": "Similarly, posts and nextPostId do not show stable variable declarations in the visible portion of main.mo, making upgrade persistence unverified.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "A backend/migration.mo module file was added",
+      "reason": "The build request does not mention or require a migration module file. The constraint says all backend logic must remain in a single Motoko actor, yet an additional module file was introduced that was not requested.",
+      "evidence": [
+        "backend/migration.mo"
+      ]
+    },
+    {
+      "description": "frontend/src/utils/urlParams.ts was added with URL parameter utility functions",
+      "reason": "The build request does not request URL parameter utility functions. This file appears unrelated to the Pages/Posts feature requirements.",
+      "evidence": [
+        "frontend/src/utils/urlParams.ts"
+      ]
+    }
+  ],
+  "confidence": 0.72,
   "changed_files": [
+    "backend/main.mo",
+    "backend/migration.mo",
     "frontend-file-summaries.txt",
     "frontend/src/App.tsx",
+    "frontend/src/components/PageForm.tsx",
+    "frontend/src/components/PagesList.tsx",
+    "frontend/src/components/PostForm.tsx",
+    "frontend/src/components/PostsList.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/usePages.ts",
+    "frontend/src/hooks/usePosts.ts",
+    "frontend/src/hooks/useUserProfiles.ts",
+    "frontend/src/pages/PagesPage.tsx",
+    "frontend/src/pages/PostsPage.tsx",
+    "frontend/src/utils/urlParams.ts",
     "project_state.json"
   ]
 }

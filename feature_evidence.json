@@ -2,20 +2,72 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-a-subjects-section-to-the-website-that-displays-a-list-of-subjects-taught-at-the-10th-science-academy-each-subject-should-be-displayed-as-a-card-or-list-item-with-the-subject-name-clearly-visible-the-section-should-use-the-academy-s-red-d9002c-accent-color-and-match-the-existing-visual-theme-light-gray-background-centered-layout-consistent-typography",
-      "featureTitle": "Add a 'Subjects' section to the website that displays a list of subjects taught at the 10th Science Academy. Each subject should be displayed as a card or list item with the subject name clearly visible. The section should use the academy's red (#d9002c) accent color and match the existing visual theme (light gray background, centered layout, consistent typography).",
+      "featureId": "feature-add-a-pages-section-to-the-frontend-where-authenticated-users-can-create-a-new-custom-page-title-content-editor-view-a-list-of-all-pages-edit-their-own-pages-and-delete-their-own-pages-display-pages-in-a-card-grid-consistent-with-the-existing-site-theme-red-accent-d9002c-merriweather-inter-fonts",
+      "featureTitle": "Add a 'Pages' section to the frontend where authenticated users can create a new custom page (title + content editor), view a list of all pages, edit their own pages, and delete their own pages. Display pages in a card grid consistent with the existing site theme (red accent #d9002c, Merriweather/Inter fonts).",
       "files": [
-        "frontend/src/App.tsx"
+        "frontend/src/App.tsx",
+        "frontend/src/components/PageForm.tsx",
+        "frontend/src/components/PagesList.tsx",
+        "frontend/src/hooks/usePages.ts",
+        "frontend/src/pages/PagesPage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-posts-section-to-the-frontend-where-authenticated-users-can-create-a-new-post-title-body-editor-view-a-list-of-all-posts-in-reverse-chronological-order-edit-their-own-posts-and-delete-their-own-posts-style-consistently-with-the-existing-academy-theme",
+      "featureTitle": "Add a 'Posts' section to the frontend where authenticated users can create a new post (title + body editor), view a list of all posts in reverse-chronological order, edit their own posts, and delete their own posts. Style consistently with the existing academy theme.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/PostForm.tsx",
+        "frontend/src/components/PostsList.tsx",
+        "frontend/src/hooks/usePosts.ts",
+        "frontend/src/pages/PostsPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
       ],
       "testIds": [
         "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-wire-the-frontend-pages-and-posts-sections-to-the-backend-using-the-existing-useactor-hook-and-react-query-for-data-fetching-mutation-and-cache-invalidation",
+      "featureTitle": "Wire the frontend Pages and Posts sections to the backend using the existing useActor hook and React Query for data fetching, mutation, and cache invalidation.",
+      "files": [
+        "frontend/src/components/PageForm.tsx",
+        "frontend/src/components/PagesList.tsx",
+        "frontend/src/components/PostForm.tsx",
+        "frontend/src/components/PostsList.tsx",
+        "frontend/src/hooks/usePages.ts",
+        "frontend/src/hooks/usePosts.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
       ],
       "confidence": "high"
     }
