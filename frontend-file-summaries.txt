@@ -1,0 +1,5 @@
+{
+  "frontend/src/index.css": "Global styles with OKLCH color system using academy red (#d9002c ≈ oklch 0.45 0.22 25) as primary, warm gray background, and Google Fonts imports for Merriweather (serif) and Inter (sans-serif).",
+  "frontend/tailwind.config.js": "Tailwind configuration extending the design system with custom font families (Merriweather serif, Inter sans), card shadows, and fade-in/pulse-ring animations.",
+  "frontend/src/App.tsx": "Main app component for 10th Science Academy with a red header/nav (now including a \"Subjects\" link), hero section, a new Subjects section displaying six 10th-grade subjects (Physics, Chemistry, Biology, Mathematics, English, Social Studies) as styled cards in a responsive grid, stats bar, features grid, CTA section, and branded footer."
+}

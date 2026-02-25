@@ -1,0 +1,25 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Add Subjects List Section",
+  "requirements": [
+    {
+      "id": "REQ-4",
+      "summary": "Add a 'Subjects' section displaying a list of 10th-grade science subjects as styled cards below the existing hero section, using the academy's red accent color and matching the current visual theme",
+      "acceptanceCriteria": [
+        "A 'Subjects' section is visible on the page below the existing welcome/hero section.",
+        "The section displays a list of common 10th-grade science subjects (e.g., Physics, Chemistry, Biology, Mathematics, English, Social Studies).",
+        "Each subject is presented as a styled card or list item.",
+        "The section heading and interactive elements use the academy red (#d9002c) consistent with the existing theme.",
+        "The layout is centered and responsive, matching the overall page style."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add a Subjects section below the existing hero/welcome section. Insert a new section with a heading styled using the academy red (#d9002c) and a grid of subject cards. Each card displays a subject name (Physics, Chemistry, Biology, Mathematics, English, Social Studies) with consistent styling matching the existing features grid layout. Use Tailwind classes to maintain centered layout, light gray background, and responsive grid (grid-cols-1 md:grid-cols-2 lg:grid-cols-3). Ensure the section integrates seamlessly between the hero and stats sections without altering existing components."
+        }
+      ]
+    }
+  ]
+}

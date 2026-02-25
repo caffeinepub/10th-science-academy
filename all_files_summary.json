@@ -1,0 +1,14 @@
+{
+  "backend/main.mo": "Empty Motoko actor serving as the backend canister placeholder with no implemented methods.",
+  "feature_evidence.json": "Feature evidence report mapping the 'Subjects' section feature to its implementation in App.tsx with high confidence.",
+  "frontend-file-summaries.txt": "JSON document containing short summaries of the three main frontend source files: index.css, tailwind.config.js, and App.tsx.",
+  "frontend/index.css": "Base Tailwind CSS file defining OKLCH-based CSS custom properties for light and dark themes using a neutral color palette.",
+  "frontend/index.html": "HTML entry point for the React app, setting the page title to '10th Science Academy' and mounting the app at the root div.",
+  "frontend/src/App.tsx": "Main React component for the 10th Science Academy site, featuring a red header with navigation, hero section, a six-subject card grid, stats bar, features grid, CTA, and footer.",
+  "frontend/src/hooks/useActor.ts": "Custom React hook that creates and caches an authenticated or anonymous ICP backend actor using React Query, invalidating dependent queries when the identity changes.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Custom React hook and context provider managing Internet Identity authentication state, including login, logout, and identity persistence via AuthClient.",
+  "frontend/src/index.css": "Global CSS file importing Google Fonts (Merriweather and Inter) and defining the academy's red (#d9002c) OKLCH-based design tokens for light and dark themes.",
+  "frontend/src/main.tsx": "React app entry point that wraps the App component with QueryClientProvider and InternetIdentityProvider before mounting to the DOM.",
+  "frontend/tailwind.config.js": "Tailwind CSS configuration extending the theme with custom fonts (Merriweather, Inter), OKLCH color tokens, card shadows, and fade-in/pulse-ring keyframe animations.",
+  "project_state.json": "Tracks the project state (version 5) for the '10th Science Academy' static website, including existing features (header, welcome section, visual theme, subjects section) and two pending new feature requests."
+}

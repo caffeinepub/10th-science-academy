@@ -1,0 +1,42 @@
+{
+  "kind": "build_request",
+  "title": "Add Subjects List Section",
+  "projectName": "10th Science Academy",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-4",
+      "text": "Add a 'Subjects' section to the website that displays a list of subjects taught at the 10th Science Academy. Each subject should be displayed as a card or list item with the subject name clearly visible. The section should use the academy's red (#d9002c) accent color and match the existing visual theme (light gray background, centered layout, consistent typography).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "Subject list"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A 'Subjects' section is visible on the page below the existing welcome/hero section.",
+        "The section displays a list of common 10th-grade science subjects (e.g., Physics, Chemistry, Biology, Mathematics, English, Social Studies).",
+        "Each subject is presented as a styled card or list item.",
+        "The section heading and interactive elements use the academy red (#d9002c) consistent with the existing theme.",
+        "The layout is centered and responsive, matching the overall page style."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not alter the existing header, welcome section, or visual theme implementations.",
+    "All styling must remain consistent with the academy's red (#d9002c) accent color and existing Tailwind/CSS design tokens.",
+    "No backend changes are required for this static content."
+  ],
+  "nonGoals": [
+    "Settings or configuration section — deferred to a later request.",
+    "Dynamic subject data stored in or fetched from the backend.",
+    "User authentication or personalization features."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

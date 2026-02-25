@@ -1,0 +1,23 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-add-a-subjects-section-to-the-website-that-displays-a-list-of-subjects-taught-at-the-10th-science-academy-each-subject-should-be-displayed-as-a-card-or-list-item-with-the-subject-name-clearly-visible-the-section-should-use-the-academy-s-red-d9002c-accent-color-and-match-the-existing-visual-theme-light-gray-background-centered-layout-consistent-typography",
+      "featureTitle": "Add a 'Subjects' section to the website that displays a list of subjects taught at the 10th Science Academy. Each subject should be displayed as a card or list item with the subject name clearly visible. The section should use the academy's red (#d9002c) accent color and match the existing visual theme (light gray background, centered layout, consistent typography).",
+      "files": [
+        "frontend/src/App.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    }
+  ]
+}
